@@ -1,5 +1,6 @@
 import React from 'react';
 import Header from './header'
+import Post from './Posts'
 
 
 class App extends React.Component {
@@ -11,26 +12,36 @@ class App extends React.Component {
 //     };
 //---STAGE 2----------
   state = {
-    pageHeader: 'Naming Contests'
+    pageHeader: 'My Works',
+    posts: []
 
   };
   componentDidMount(){
-    console.log('did mount')
-    debugger;
+    this.setState({
+      posts: data.works
+    })
   }
-  componentWillUnmount(){ console.log('will Unmount')
-    debugger;
-};
+  componentWillUnmount(){
+    // take away timers
+  };
   render(){
     return(
       <div className= "App">
         <Header message={this.state.pageHeader}/>
-        <div></div>
-  </div>
+
+        <div className='Posts'>
+          {this.state.posts.map((post , i) =>
+          <Post key={i}{...post}
+          />
+          )}
+        </div>
+      </div>
   )
   }
 }
-//-------STATELESS--------
+
+
+// -------STATELESS--------
 // const App = (props) => {
 //   return(
 //     <div className="container">
@@ -40,11 +51,11 @@ class App extends React.Component {
 //   )
 // }
 
-App.propTypes = {
-  message: React.PropTypes.string.isRequired
-}
-App.defaultProps = {
-  headerMessage: "TestTestTest Header"
-}
+// App.propTypes = {
+//   message: React.PropTypes.string
+// }
+// App.defaultProps = {
+//   headerMessage: "TestTestTest Header"
+// }
 
 export default App;
